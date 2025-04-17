@@ -1,0 +1,9 @@
+
+easydict
+opencv-python
+matplotlib
+scikit-learn
+tqdm
+kornia
+notebook  # for running Jupyter
+
