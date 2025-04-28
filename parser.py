@@ -41,5 +41,5 @@ if cfg.t_labels == []:
     cfg.t_labels = np.arange(*cfg.t_labels_range).tolist()
 
 # ImageNet path
-cfg.ImageNet_train_dir = '/CUSTOM_PATH_TO_TRAIN/'  # Please provide the path to ImageNet train folder
-cfg.ImageNet_val_dir = '/CUSTOM_PATH_TO_VAL/'  # Please provide the path to ImageNet val folder
+cfg.ImageNet_train_dir = '../DatasetsPatchAttack/imagenet-10'  # Please provide the path to ImageNet train folder
+cfg.ImageNet_val_dir = '../DatasetsPatchAttack/imagenet-10'   # Please provide the path to ImageNet val folder
