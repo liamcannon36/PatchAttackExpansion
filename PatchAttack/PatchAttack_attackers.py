@@ -9,10 +9,12 @@ import kornia
 
 torch_cuda = 0
 
+#Texture patch attack class. I only commented this one, however the other attacks are similar and
+#These comments should be germane to those. 
 class TPA():
     
     def __init__(self, dir_title):
-        
+        # stores attack results in these directories
         dir_title = os.path.join(dir_title, PA_cfg.t_name)
 
         # attack dirs
@@ -23,6 +25,7 @@ class TPA():
             item,
         ) for item in PA_cfg.TPA_attack_dirs]
         
+#     Execute attack with the input model and input images 
     def attack(self, model, input_tensor, label_tensor, target, input_name='temp', target_in_dict_mapping=None):
         
         # set attack_dirs
@@ -66,7 +69,7 @@ class TPA():
         print('target_{} | {} texture images has been prepared!'.format(
             target_in_dict, len(noises)))
 
-        # release memory
+        # Clear cache 
         torch.cuda.empty_cache()
         
         # filter textures
@@ -85,7 +88,7 @@ class TPA():
             textures_used = noises
             print('not filtering the texture images')
 
-        # set up records
+        # Init. empty recordsd for agent
         t_rcd = edict()
         t_rcd.combos = []
         t_rcd.non_target_success = []
@@ -113,7 +116,7 @@ class TPA():
                 break
         load_rcd = n_pre_agents!=0
         
-        # attack
+        # Runs the attack, based on teh configuration we create in PatchAttack_config.py
         target_tensor = torch.LongTensor([target]).cuda(torch_cuda)
         p_image, combos, non_target_success, target_success, time_used, queries = TPA_agent.DC(
             model=model, 
@@ -133,7 +136,7 @@ class TPA():
             load_index=0 if load_rcd else None,  # set it to 0 for single input tensor
         )
         
-        # update records
+        # update records of moves the RL agent made
         for a_i in range(n_pre_agents, PA_cfg.n_agents):
             rcd[a_i].combos.append(combos[a_i])
             rcd[a_i].non_target_success.append(non_target_success[a_i])
@@ -151,6 +154,7 @@ class TPA():
             
         return p_image, rcd
             
+#     this calculates how much area of the image the adv. patches take up
     @staticmethod
     def calculate_area(p_image, combos):
         # apply combos
@@ -170,7 +174,9 @@ class TPA():
         
         return areas
             
-            
+ 
+#--------------------------------------------------------------------------------------------------
+    
 class MPA():
     
     def __init__(self, dir_title):
@@ -196,7 +202,7 @@ class MPA():
             
         else:
             
-            # set records
+            # resets record
             rcd = edict()
             rcd.masks = []
             rcd.RGB_paintings = []
@@ -207,7 +213,7 @@ class MPA():
             rcd.queries = []
             rcd.time_used = []
 
-            # attack
+            # performs attack using our config
             target_tensor = torch.LongTensor([target]).cuda(torch_cuda)
             mask, RGB_painting, combo, area, success, queries, time_used = MPA_agent.attack(
                 model=model, 
@@ -235,10 +241,10 @@ class MPA():
             rcd.queries.append(queries)
             rcd.time_used.append(time_used)
 
-            # save records
+            # save records to rcd
             torch.save(rcd, os.path.join(attack_dir, 'rcd.pt'))
 
-            # finished flag
+            # finished flag , 
             torch.save('finished!', os.path.join(attack_dir, 'finished.pt'))
         
         # print records
@@ -276,7 +282,10 @@ class MPA():
         )
         return (area/(H*W)).item()
         
-    
+        
+        
+        
+
 class HPA():
     
     def __init__(self, dir_title):
