@@ -29,7 +29,8 @@ If you use the code or find this project helpful, please consider citing the ori
 + kornia 0.2.2
 + jupyter (for PatchAttack_tutorial.ipynb)
 
-Step-by-step:
+
+## Step-by-step:
 Instal the requirements, you will also need the human-readable labels of your image dataset, in our case teh 1000 labels of image net. This needs to be a txt file in this instance, and not a json. If you are using ImageNet, I supplied this in the codeabse. To run this, it is not necessary to rebuild the adversarial patches dictionary, if you are sticking with ImageNet. It is suggested to start in the attack tutorial ipynb file, by running those attacks and visualizing the output. Then, to change the parameters of the attack, see the TPA_config file, MPA_config file, etc...
 
 ### Dictionaries
