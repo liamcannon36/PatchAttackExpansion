@@ -21,16 +21,16 @@ If you use the code or find this project helpful, please consider citing the ori
 ## Requirements
 + python 3.6
 + pytorch 1.4.0
-+ easydict
-+ opencv
-+ matplotlib 
-+ scikit-learn
-+ tqdm
++ easydict 1.9.9
++ opencv 3.14.10
++ matplotlib  3.2.1
++ scikit-learn 0.21.2
++ tqdm 4.43.0
 + kornia 0.2.2
 + jupyter (for PatchAttack_tutorial.ipynb)
 
-To run this, you will also need the human-readable labels of your image dataset, in our case teh 1000 labels of image net. This needs to be a txt file in this instance, and not a json. 
-It is not necessary to rebuild the adversarial patches dictionary, if you are sticking with ImageNet. It is suggested to start in the attack tutorial ipynb file.
+Step-by-step:
+Instal the requirements, you will also need the human-readable labels of your image dataset, in our case teh 1000 labels of image net. This needs to be a txt file in this instance, and not a json. If you are using ImageNet, I supplied this in the codeabse. To run this, it is not necessary to rebuild the adversarial patches dictionary, if you are sticking with ImageNet. It is suggested to start in the attack tutorial ipynb file, by running those attacks and visualizing the output. Then, to change the parameters of the attack, see the TPA_config file, MPA_config file, etc...
 
 ### Dictionaries
  We provide [TextureDict_ImageNet_0.zip](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/cyang76_jh_edu/EcKGvE7jQVJMuMxqdbSSYdEB2VLbcE24m6YQDAqb2yR9KA?e=P8RJJm), [TextureDict_ImageNet_1.zip](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/cyang76_jh_edu/EXsnVi0FETZJuf1v9CLfu6YByb79RO_vj3-5BV_RY5Wzdg?e=lRUAj1). Please download, unzip and merge the two directories, constituing the whole texture dictionary used in our [paper](https://arxiv.org/abs/2004.05682). Alternatively, you can also generate one by yourself. First, please provide the paths to the train and val folder of ImageNet dataset and set cfg.ImageNet_train_dir and cfg.ImageNet_val_dir in parser.py. Second, you can optionally adjust the parameters in PatchAttack/PatchAttack_config.py to generate textures in different settings. Then, you can use the following commands to start the generation:
