@@ -1,11 +1,11 @@
-# PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning
+# PatchAttackExpansion: A Black-box Texture-based Attack with Reinforcement Learning (experimented on in this codebase)
 
 <div align="center">
   <img src="Images/Fig1.png" width="800px" />
 </div>
 
 \
-This is the code used in the paper [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/abs/2004.05682).
+This is an extension of the code for the paper [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/abs/2004.05682).
 
 If you use the code or find this project helpful, please consider citing our paper.
 
@@ -30,10 +30,10 @@ If you use the code or find this project helpful, please consider citing our pap
 + jupyter (for PatchAttack_tutorial.ipynb)
 
 To run this, you will also need the human-readable labels of your image dataset, in our case teh 1000 labels of image net. This needs to be a txt file in this instance, and not a json. 
-
+It is not necessary to rebuild the adversarial patches dictionary, if you are sticking with ImageNet. It is suggested to start in the attack tutorial ipynb file.
 
 ### Dictionaries
- We privide [TextureDict_ImageNet_0.zip](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/cyang76_jh_edu/EcKGvE7jQVJMuMxqdbSSYdEB2VLbcE24m6YQDAqb2yR9KA?e=P8RJJm), [TextureDict_ImageNet_1.zip](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/cyang76_jh_edu/EXsnVi0FETZJuf1v9CLfu6YByb79RO_vj3-5BV_RY5Wzdg?e=lRUAj1). Please download, unzip and merge the two directories, constituing the whole texture dictionary used in our [paper](https://arxiv.org/abs/2004.05682). Alternatively, you can also generate one by yourself. First, please provide the paths to the train and val folder of ImageNet dataset and set cfg.ImageNet_train_dir and cfg.ImageNet_val_dir in parser.py. Second, you can optionally adjust the parameters in PatchAttack/PatchAttack_config.py to generate textures in different settings. Then, you can use the following commands to start the generation:
+ We provide [TextureDict_ImageNet_0.zip](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/cyang76_jh_edu/EcKGvE7jQVJMuMxqdbSSYdEB2VLbcE24m6YQDAqb2yR9KA?e=P8RJJm), [TextureDict_ImageNet_1.zip](https://livejohnshopkins-my.sharepoint.com/:u:/g/personal/cyang76_jh_edu/EXsnVi0FETZJuf1v9CLfu6YByb79RO_vj3-5BV_RY5Wzdg?e=lRUAj1). Please download, unzip and merge the two directories, constituing the whole texture dictionary used in our [paper](https://arxiv.org/abs/2004.05682). Alternatively, you can also generate one by yourself. First, please provide the paths to the train and val folder of ImageNet dataset and set cfg.ImageNet_train_dir and cfg.ImageNet_val_dir in parser.py. Second, you can optionally adjust the parameters in PatchAttack/PatchAttack_config.py to generate textures in different settings. Then, you can use the following commands to start the generation:
 
 + Build Texture Dictionary:
 ```bash
