@@ -7,7 +7,7 @@
 \
 This is an extension of the code for the paper [PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning](https://arxiv.org/abs/2004.05682).
 
-If you use the code or find this project helpful, please consider citing our paper.
+If you use the code or find this project helpful, please consider citing the original paper.
 
 ```
 @article{yang2020patchattack,
